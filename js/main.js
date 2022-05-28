@@ -10,8 +10,8 @@ const inputPeso = document.querySelector("#peso"),
     inputEdad = document.querySelector("#edad"),
     inputSexo = document.querySelector('#sexo'),
     inputActividad = document.querySelector('#actividad'),
-    btnCalcular = document.querySelector("#btnCalcular");
-   let resultado = document.querySelector("#resultado");
+    btnCalcular = document.querySelector("#btnCalcular"),
+ resultado = document.querySelector("#resultado");
 let estadoFisico = JSON.parse(localStorage.getItem("historial")) || [];
 
 
@@ -59,7 +59,8 @@ function calcularGrasaCorporal(indiceCorporal, edad, sexo) {
 
 // agrega resultados al html
 function resultadoHTML(estadoFisico) {
-    let html;
+    let html = "";
+    resultado.innerHTML = "";
     estadoFisico.forEach(element => {
     html = `<div class="caja-resultado flex flex-column"> <h3> Tu IMC es de: <strong>${element.indiceCorporal} </strong> %</h3>
      <h3> Tu Metabolismo Basal es de: <strong> ${element.metabolismoBasal}</strong> Kcal </h3>
@@ -85,11 +86,6 @@ function cargaDatos(peso, altura, edad, sexo) {
     return new FisicoUsuario(peso, altura, edad, sexo, indiceCorporal, metabolismoBasal, coheficienteActividad, indiceGrasaCorporal, aguaPorDia);
 }
 
-
-
-
-
-
 class FisicoUsuario {
     constructor(peso, altura, edad, sexo, indiceCorporal, metabolismoBasal, coheficienteActividad, indiceGrasaCorporal, aguaPorDia) {
         this.peso = peso;
@@ -104,17 +100,16 @@ class FisicoUsuario {
     }
 }
 
+  if (estadoFisico.length > 0) {
+
+    resultadoHTML(estadoFisico);
+} 
 
 btnCalcular.addEventListener("click", () => {
     const datos = cargaDatos(peso, altura, edad, sexo);
     estadoFisico.push(datos);
-    localStorage.setItem("historial", JSON.stringify(estadoFisico))
     resultadoHTML(estadoFisico);
-    
+    localStorage.setItem("historial", JSON.stringify(estadoFisico))
 })
 
 
-if (estadoFisico.length > 0) {
-
-    resultadoHTML(estadoFisico);
-}
