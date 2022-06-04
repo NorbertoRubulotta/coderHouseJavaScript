@@ -22,24 +22,24 @@
     <form action="submit" id="form">
     <div class="mb-3">
         <label for="peso" class="form-label">Ingresa tu peso</label>
-        <input type="number" class="form-control" id="peso">
+        <input  type="number"  class="form-control" id="peso" required>
       </div>
       <div class="mb-3">
         <label for="altura" class="form-label">Ingresa tu altura en CM</label>
-        <input type="number" class="form-control" id="altura">
+        <input  type="number" class="form-control" id="altura" required >
       </div>
       <div class="mb-3">
         <label for="edad" class="form-label">Ingresa tu edad</label>
-        <input type="number" class="form-control" id="edad" >
+        <input type="number" class="form-control" id="edad" required >
       </div>
       <label for="sexo" class="form-label">Selecciona tu sexo</label>
-      <select class="form-select" id="sexo" aria-label="Default select example">
+      <select class="form-select" id="sexo" aria-label="Default select example" required>
         <option value="MUJER">Mujer</option>
         <option value="HOMBRE">Hombre</option>
     </select>
     <br>
     <label for="actividad" class="form-label">Selecciona tu nivel de actividad física</label>
-    <select class="form-select" id="actividad" aria-label="Default select example">
+    <select class="form-select" id="actividad" aria-label="Default select example" required>
         <option value="1.2">Sedentario/a (no realizas ninguna acitivdad fisica)</option>
         <option value="1.375">Poca actividad (1 - 3 días por semana)</option>
         <option value="1.55">Actividad moderada (3 - 5 días por semana)</option>
@@ -60,6 +60,7 @@
     <footer>
 
     </footer>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="./jS/main.js"></script>
 </body>

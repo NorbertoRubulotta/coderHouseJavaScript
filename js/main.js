@@ -99,17 +99,22 @@ class FisicoUsuario {
         this.aguaPorDia = aguaPorDia;
     }
 }
-
-  if (estadoFisico.length > 0) {
-
-    resultadoHTML(estadoFisico);
-} 
+// usar condicional &&
+estadoFisico.length > 0 && resultadoHTML(estadoFisico);
 
 btnCalcular.addEventListener("click", () => {
+   
     const datos = cargaDatos(peso, altura, edad, sexo);
+    if (peso.value != ''  & altura.value != '' & edad.value != ''){
+   
     estadoFisico.push(datos);
     resultadoHTML(estadoFisico);
-    localStorage.setItem("historial", JSON.stringify(estadoFisico))
+    localStorage.setItem("historial", JSON.stringify(estadoFisico))}
+    else{ Swal.fire({
+        icon: 'warning',
+        title: 'Oops...',
+        text: 'Para poder calcular tu estado físico debes completar todos los campos'
+      })}
 })
 
 
