@@ -35,23 +35,45 @@ sexo = valorSexo(); */
 let cintura = parseFloat(ingresoDatos("Ingresa tu el tamaño del contorno de tu cintura en cm (toma como referencia el ombligo")); */
 /* alert(` IMC: ${indiceCorporal} %\n Metabolismo basal: ${metabolismoBasal} Kcal\n Indice de grasa corporal ${indiceGrasaCorporal} %\n Cantidad de agua diaria: ${aguaPorDia} Lts `); */
 
-const inputEmail = document.querySelector("#email"),
+/* const inputEmail = document.querySelector("#email"),
     inputPass = document.querySelector("#pass");
- let usuarios = [];
+inputNombre = document.querySelector("#Nombre");
+let usuarios = [];
 
-    class Usuario {
-        constructor(email, pass, id)  {
-            this.email = email;
-            this.pass = pass;
-            this.id = id;
-        }
+class Usuario {
+    constructor(email, pass, nombre, id) {
+        this.email = email;
+        this.pass = pass;
+        this.nombre = nombre;
+        this.id = id;
     }
+}
 
-    function crearUsuario(email, pass, id){
-        email = email.value;
-        pass = pass.value;
-        id = id.value;
-        return new Usuario(email, pass, id);
+function crearUsuario(email, pass, id) {
+    email = email.value;
+    pass = pass.value;
+    nombre = nombre.value;
+    id = id.value;
+    return new Usuario(email, pass, nombre, id);
+}
+
+btnCrearUsuario.addEventListener("click", () => {
+
+    const usuario = crearUsuario(email, pass, id);
+
+    if (email.value != '' & pass.value != '' & nombre.value != '') {
+
+        usuarios.push(usuario);
+
+        localStorage.setItem("usuarios", JSON.stringify(usuarios))
     }
-
-    
+    else {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Para poder crear un usuario debes completar todos los campos'
+        })
+    }
+})
+    btnNuevoUsuario.addEventListener("click", () => {
+    console.log("lalala")}) */

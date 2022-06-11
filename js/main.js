@@ -11,10 +11,40 @@ const inputPeso = document.querySelector("#peso"),
     inputSexo = document.querySelector('#sexo'),
     inputActividad = document.querySelector('#actividad'),
     btnCalcular = document.querySelector("#btnCalcular"),
- resultado = document.querySelector("#resultado");
+    btnLogin = document.querySelector("#btnLogin"),
+    btnCrearUsuario = document.getElementById('btnCrearUsuario'),
+    btnNuevoUsuario = document.querySelector("#btnNuevoUsuario"),
+    resultado = document.querySelector("#resultado"),
+    textoInformativo = document.querySelector("#textoInformativo"),
+    inputEmail = document.querySelector("#email"),
+    inputPass = document.querySelector("#pass"),
+    inputNombre = document.querySelector("#Nombre");
 let estadoFisico = JSON.parse(localStorage.getItem("historial")) || [];
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];;
+
+fetch("./datos.json")
+.then((resp) => resp.json())
+.then((data) => {
+  data.forEach(e => {
+    textoInformativo.innerHTML = `${e.imc} ${e.caldia} ${e.grasa} ${e.agua}`;
+});;
+});
 
 
+class Usuario {
+    constructor(email, pass, nombre,) {
+        this.email = email;
+        this.pass = pass;
+        this.nombre = nombre;
+    }
+}
+
+function crearUser(email, pass, nombre,) {
+    email = email.value;
+    pass = pass.value;
+    nombre = nombre.value;
+    return new Usuario(email, pass, nombre);
+}
 // Calcula el Indice de masa corporal.
 function calculaIMC(kg, cm) {
     let alt = (cm / 100);
@@ -61,15 +91,15 @@ function calcularGrasaCorporal(indiceCorporal, edad, sexo) {
 function resultadoHTML(estadoFisico) {
     let html = "";
     resultado.innerHTML = "";
-    estadoFisico.forEach(element => {
-    html = `<div class="caja-resultado flex flex-column"> <h3> Tu IMC es de: <strong>${element.indiceCorporal} </strong> %</h3>
-     <h3> Tu Metabolismo Basal es de: <strong> ${element.metabolismoBasal}</strong> Kcal </h3>
-     <h3> Calorías necesarias por día: <strong> ${element.coheficienteActividad}</strong> Kcal </h3>
-     <h3> Tu Indice de grasa corporal es de: <strong>${element.indiceGrasaCorporal}</strong> % </h3>
-     <h3> Agua necesaria por dia: <strong>${element.aguaPorDia} lts </strong></h3>
-     </div>`;
+    estadoFisico.forEach(element => {   
+    html = `<div class="caja-resultado flex flex-column"> <div> <h3> Tu IMC es de: <strong>${element.indiceCorporal}</strong> % </h3> </div>
+    <div> <h3> Tu Metabolismo Basal es de: <strong> ${element.metabolismoBasal}</strong> Kcal </h3> </div>
+    <div> <h3> Calorías necesarias por día: <strong> ${element.coheficienteActividad}</strong> Kcal </h3> </div>
+    <div> <h3> Tu Indice de grasa corporal es de: <strong>${element.indiceGrasaCorporal}</strong> % </h3> </div>
+    <div> <h3> Agua necesaria por dia: <strong>${element.aguaPorDia} lts </strong></h3> </div> </div>
+     `;
     resultado.innerHTML += html;
-});
+});;
 }
 
 // carga los datos de los inputs en variables
@@ -106,10 +136,12 @@ btnCalcular.addEventListener("click", () => {
    
     const datos = cargaDatos(peso, altura, edad, sexo);
     if (peso.value != ''  & altura.value != '' & edad.value != ''){
-   
+
     estadoFisico.push(datos);
     resultadoHTML(estadoFisico);
+    form.reset();
     localStorage.setItem("historial", JSON.stringify(estadoFisico))}
+
     else{ Swal.fire({
         icon: 'warning',
         title: 'Oops...',
@@ -118,3 +150,29 @@ btnCalcular.addEventListener("click", () => {
 })
 
 
+
+btnNuevoUsuario.addEventListener("click", () => {
+    crearUsuario.classList.add('d-block');
+    loginUsuario.classList.remove('d-block');})
+
+
+btnCrearUsuario.addEventListener("click", () => {
+        const usuario = crearUser(email, pass, nombre);
+        if (email.value != '' & pass.value != '' & nombre.value != '') {
+    
+            usuarios.push(usuario);
+            localStorage.setItem("usuarios", JSON.stringify(usuarios))
+        }
+        else {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'Para poder crear un usuario debes completar todos los campos'
+            })
+        }
+    })
+    
+    btnLogin.addEventListener("click", () => {
+        loginUsuario.classList.add('d-block');
+        crearUsuario.classList.remove('d-block');})
+        
