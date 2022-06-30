@@ -1,9 +1,11 @@
 // calculo de metabolismo basal LISTO
-
+// crear cuenta de usuario listo
+// arrays de objetos con la informacion del usuario ( Usuario, edad, sexo, peso, altura, medida cuello, medida cintura, medida caderas si el sexo es femenino, objetivos, actividad fisica) listo
 // calculadora de cuanta agua necesitas por dia LISTO
 // calcular nivel de grasa corporal LISTO
 // gasto total energetico LISTO
-
+// habilitar el boton cerrar sesion listo
+// mostrar historial del usuario listo
 // Pide al usuario el ingreso de datos.
 /* function ingresoDatos(mensaje) {
     let dato = prompt(mensaje);

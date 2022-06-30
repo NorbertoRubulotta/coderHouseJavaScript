@@ -8,10 +8,14 @@
 }
 
 body {
-  background-color: #000286;
-  color: #F7F7FF;
+  background-color: white;
+   background-image: url(../assets/img/pexels-annushka-ahuja-7991936.jpg); 
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: whitesmoke;
 }
-
 ul {
   list-style-type: none;
 }
@@ -25,9 +29,9 @@ a {
   text-decoration: none;
   display: inline-block;
 }
-p {
+/* p {
   font-size: clamp(1.5rem, 8vw - 2rem, 3rem);
-}
+} */
 h1,h4 {
   text-align: center;
 }
@@ -36,7 +40,11 @@ form {
   display: flex;
   flex-direction: column;
 }
-
+nav{
+  height: 10vh;
+  background-color: #00028627;
+  padding: 20px 20px;
+}
 .formulario {
   max-width: 400px;
   margin: 0 auto;
@@ -49,11 +57,41 @@ form {
 .caja-resultado {
   margin-bottom: 30px;
   margin-top: 10px;
-  background-color: #000399;
+  background-color: #2525233a;
   border-radius: 10px;
   padding: 15px;
 
 }
-#crearUsuario, #loginUsuario {
+.displayNone{
   display: none;
+  transition: ease-in-out;
+}
+
+.ingresoDatos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+background-color: rgb(83, 94, 238);
+border-radius: 15px;
+}
+.card-body{
+  background-color: black;
+}
+.mainGrid{
+   display: grid;
+    grid-template-columns: repeat(2, 45%);
+    justify-content: space-evenly;
+    align-content: center; }
+
+#crearUsuario{
+  margin: 0 auto;
+}
+#divLoginUsuario{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+gap: 20px;
 }
